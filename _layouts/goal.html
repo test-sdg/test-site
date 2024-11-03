@@ -1,0 +1,91 @@
+{% include head.html %}
+{% include header.html %}
+
+<div class="header-container">
+  {% include components/goal/breadcrumbs.html %}
+</div>
+
+<!-- add upper navigation bar -->
+{% include components/goal-navigation-top.html %}
+
+{% assign goal_indicators = page.indicators | where: 'goal_number', page.goal.number | group_by: 'target_number' %}
+{% assign show_progress = false %}
+{% for group in goal_indicators %}
+  {% for indicator in group.items %}
+    {% if indicator.progress_status and indicator.progress_status != '' %}
+      {% assign show_progress = true %}
+    {% endif %}
+  {% endfor %}
+{% endfor %}
+
+
+<div id="main-content" class="container" role="main" style="padding-bottom:0px">
+
+  {% include components/goal/goal-content.html content=content %}
+  <h2 class="goal-title-by-goal goal-{{ page.goal.number }}">
+      {% if page.goal_heading and page.goal_heading != '' %}
+          {{ page.goal_heading | t }}
+      {% else %}
+          {{ page.goal.name }}
+      {% endif %}
+  </h2>
+
+
+  <div class="container g-0 {% if show_progress %}goal-showing-progress{% endif %}">
+    <!-- sdg name -->
+    <div class="row g-0 align-items-end" style="margin-bottom: 1rem;">
+      <div class="col">
+        <h3 class="goal-page-heading">{{ page.t.general.targets_and_indicators }}</h3>
+      </div>
+      {% if show_progress %}
+      <div class="col-lg-2 d-none d-lg-block progress-column-header">
+        <span aria-hidden="true">{{ site.progress_status.status_help | t | default: page.t.status.progress_help }}</span>
+      </div>
+      {% endif %}
+    </div>
+    <!-- <hr class="goal-page-column-header-rule"> -->
+    {% for group in goal_indicators %}
+      {% for indicator in group.items %}
+        {% assign tag_classes = "" | split: "," %}
+        {% if indicator.tags %}
+          {% for tag in indicator.tags %}
+            {% assign tag_slug = "indicator-" | append: tag | slugify %}
+            {% assign tag_classes = tag_classes | push: tag_slug %}
+          {% endfor %}
+        {% endif %}
+        {% assign tag_classes = tag_classes | join: " " %}
+        {% if indicator.progress_status and indicator.progress_status != '' %}
+          {% assign indicator_has_progress = true %}
+        {% endif %}
+
+        <div class="row g-0 align-items-start justify-content-start goal-indicator" style="padding-bottom: 1rem;">
+          <div class="col-1 goal-page-indicator-number">
+            <a>
+              <span class="indicator-number"><span class="visually-hidden">{{ page.t.general.indicator }}</span> {{ indicator.number }}</span>
+            </a>
+          </div>
+          <div class="col goal-page-indicator-name">
+          {% if indicator.placeholder and indicator.placeholder != '' %}
+            <span class="indicator-name">{{ indicator.placeholder }}</span>
+          {% else %}
+            <span class="indicator-name"><a href="{{ indicator.url }}">{{ indicator.name }}</a></span>
+          </div>
+          <div class="col-1 goal-page-indicator-progress">
+            {% include components/indicator/tags.html tags=indicator.tags reporting_status=true indicator=indicator %}
+          </div>
+            {% if indicator_has_progress %}
+            <div class="col-1 goal-page-indicator-progress">
+              <span class="visually-hidden">{{ site.progress_status.status_heading | t }}</span>
+              {% include components/progress/progress-status.html indicator=indicator %}
+            </div>
+            {% endif %}
+          {% endif %}
+        </div>
+      {% endfor %}
+    {% endfor %}
+  </div>
+  {% include back-to-top.html %}
+</div>
+
+{% include components/goal-navigation-bottom.html %}
+{% include footer.html %}

@@ -1,14 +1,65 @@
 # Jekyll configuration for Open SDG platform
 
-# Tell the Remote Theme plugin to use the Open SDG platform (Jekyll theme).
-remote_theme: open-sdg/open-sdg@2.3.0
+# primary settings:
+baseurl: "/sdg-in-staging-site" # change here!
+remote_data_prefix: "https://StabsstelleNachhaltigkeit.github.io/sdg-in-staging-data"
 
-# Replace this title as needed.
-title: general.site_title
-url: ""
-environment: staging
+# URL for the "Edit Data" and "Edit Metadata" button on indicators.
+data_edit_url: http://prose.io/#StabsstelleNachhaltigkeit/sdg-in-staging-data/edit/develop/data/indicator_[id].csv
+metadata_edit_url: http://prose.io/#StabsstelleNachhaltigkeit/sdg-in-staging-data/edit/develop/meta/[id].md
 
-# Pages
+# Text zu Handlungsfelder 
+# fields to change: title, leitsatz, hf-goals
+frontpage_handlungsfelder:  
+  - title: Wirtschaft
+    leitsatz: |
+      Wir schaffen die Rahmenbedingungen für eine nachhaltige Entwicklung der Wirtschaft. 
+      Als vernetzte, zukunftsorientierte und attraktive Stadt sichern wir mit technologischem 
+      und gesellschaftlichem Fortschritt den Wohlstand für alle Menschen in Ingolstadt.
+    hf-goals: "4,5,8,9,10,11,12,13"
+    hf-color: '#007ebe'
+
+  - title: Umwelt
+    leitsatz: |
+      Wir fördern Klimaneutralität und Umweltschutz auch durch technische und digitale Lösungen. 
+      Ökologische und regionale Landwirtschaft sowie der Erhalt der Biodiversität werden unterstützt. 
+      Wir schaffen Bewusstsein für den Erhalt unserer natürlichen Lebensgrundlagen und sichern diese durch ressourcenschonendes Planen und Handeln.
+    hf-goals: "2,6,7,9,11,12,13,14,15"
+    hf-color: '#65b448'
+
+  - title: Leben
+    leitsatz: |
+        Wir ermöglichen gesundes und sicheres Miteinander, Wohnen und Arbeiten für alle Menschen in Ingolstadt. 
+        Wir planen unsere Stadt mit ihren öffentlichen Räumen nachhaltig, generationsgerecht und inklusiv. 
+        Wir sichern bedarfsgerechten Wohnbau, soziale Einrichtungen und eine gute Infrastruktur.
+    hf-goals: "2,3,6,9,10,11,12,13,15,16"
+    hf-color: '#f8b715'
+
+  - title: Vielfalt
+    leitsatz: |
+      Wir arbeiten aktiv an einer Stadtgesellschaft, die für Vielfalt und Respekt steht. 
+      Unser Ziel sind Teilhabe und Chancengleichheit aller. 
+      Wir fördern bürgerschaftliches Engagement für ein gutes Miteinander – lokal und global.
+    hf-goals: "1,2,3,4,5,6,10,11,15,16,17"
+    hf-color: '#ed6d29'
+
+  - title: Bildung
+    leitsatz: |
+        Wir fördern Bildung, Kunst und Kultur für alle Menschen in unserer Stadt. 
+        Besondere Aufmerksamkeit verdienen dabei Kreativität und freie individuelle Entfaltung und Entwicklung. 
+    hf-goals: "4,9,10,11,16"
+    hf-color: '#05afda'
+
+
+email_contacts:
+  questions: nachhaltigkeit@ingolstadt.de
+  suggestions: nachhaltigkeit@ingolstadt.de
+  functional: nachhaltigkeit@ingolstadt.de
+
+
+# 
+# other settings are alphabetically ordered:
+
 collections:
   pages:
     output: true
@@ -21,12 +72,34 @@ collections:
   goals:
     output: true
 
-# Tell Jekyll to use the Remote Theme plugin.
-plugins:
-  - jekyll-remote-theme
-  - jekyll-open-sdg-plugins
+cookie_consent_form:
+  enabled: true
 
-# Exclude some files/folders.
+country:
+  name: Ingolstadt
+  adjective: Ingolstadt
+  
+create_indicators:
+  layout: indicator
+create_goals:
+  previous_next_links: false
+  goals: []
+create_pages:
+  - filename: ''
+    folder: /goals
+    layout: goals
+    title: general.goals
+  - filename: ''
+    folder: /reporting-status
+    layout: reportingstatus
+    title: status.reporting_status
+  - filename: ''
+    folder: /search
+    layout: search
+    title: search.search
+
+custom_js:
+  - /assets/js/custom.js
 exclude:
   - vendor
   - scripts
@@ -37,3 +110,84 @@ exclude:
   - README.md
   - LICENSE
 
+footer_language_toggle: none
+
+
+footer_menu:
+  - path: https://StadtIngolstadt.github.io/sdg-data/de/zip/all_indicators.zip
+    translation_key: Download
+  - path: mailto:nachhaltigkeit@ingolstadt.de
+    translation_key: menu.contact_us
+  - path: /about/cookies-and-privacy/
+    translation_key: menu.cookies
+  - path: /guidance
+    translation_key: menu.guidance
+
+
+frontpage_introduction_banner:
+ title: my-custom-translations.frontpage-intro-title
+ description: my-custom-translations.frontpage-intro-description
+
+frontpage_goals_grid:
+  title: my-custom-translations.my-goals-grid-title
+  description: my-custom-translations.my-goals-grid-description
+
+frontpage_handlungsfelder_title:
+  hf-title: my-custom-translations.my-hf-title
+  hf-subtitle: my-custom-translations.my-hf-subtitle
+
+
+frontpage_cards:
+  - title: Nachhaltigkeitsbericht - Stadt Ingolstadt 2021
+    href: "https://nachhaltigkeitsagenda-ingolstadt.de/wp-content/uploads/2023/01/221208_BNK_final_web.pdf" 
+    thumbnail_src: /BNK_Titelbild_1_1.jpg
+  - title: Magazin - "Ingolstadt Nachhaltig" - Ausgabe 2022
+    href: "https://nachhaltigkeitsagenda-ingolstadt.de/wp-content/uploads/2023/01/IN_Magazin_dpa-CC_FINAL_DIGTAL.pdf"
+    thumbnail_src: /IN_Magazin_Titelbild_1_1.jpg
+  - title: Nachhaltigkeitsfilm - Stadt Ingolstadt
+    href: "https://www.youtube.com/watch?v=LnqFFrIGQQQ"
+    thumbnail_src: /Logo N-Agenda_1_1.png
+  - title: Video Rückblick - Visionen 2045 Ingolstadt
+    href: "https://www.youtube.com/watch?v=VDQF-RdU0nc"
+    thumbnail_src: /Logo N-Agenda_1_1.png
+
+
+goal_image_base: https://open-sdg.org/sdg-translations/assets/img/goals
+graph_color_set: accessible
+header_language_toggle: dropdown
+
+languages:
+  - de
+
+menu:
+  - path: /
+    translation_key: Startseite
+  - path: /goals
+    translation_key: general.goals
+  - path: /reporting-status
+    translation_key: menu.reporting_status
+  - path: /about
+    translation_key: menu.about
+  - path: /faq
+    translation_key: menu.faq
+
+menu_top:
+  - path: /leichte-sprache
+    translation_key: menu.plain_german
+  - path: /reiter-english
+    translation_key: English
+
+metadata_tabs:
+  - scope: national
+    title: Metadaten
+    description: indicator.national_metadata_blurb
+
+plugins:
+  - jekyll-remote-theme
+  - jekyll-open-sdg-plugins
+
+remote_theme: open-sdg/open-sdg@2.3.0
+
+title: general.site_title
+url: ""
+environment: staging

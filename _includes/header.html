@@ -1,0 +1,52 @@
+{% include multilingual-js.html key="header" %}
+<a class="sr-only-focusable" id="skiplink" href="#main-content" tabindex="0">{{ page.t.header.skip_link }}</a>
+{% include components/header/internet-explorer-message.html %}
+
+<header>
+    <div id="color-bar-background"></div>
+
+    <div class="header-container justify-content-between"> 
+      
+        <!-- header logo and lower navbar -->
+        <div class="row g-0 w-100">
+            <div class="col align-self-center">
+                <a href="https://nachhaltigkeitsagenda-ingolstadt.de/" id="home" aria-label="{{ page.t.header.logo_title }}" title="{{ page.t.header.logo_title }}" target="_blank">
+                    <img src="{{ page.logo.src }}" alt="Nachhaltigkeitsagenda Ingolstadt" style="width: 100%">      
+                </a>
+            </div>
+            <div class="col align-self-center">
+
+                <!-- header page-top navbar -->
+                <div class="row justify-content-end header-navigation-top">
+                    {% include navigation-top.html dropdowns=false %}
+                </div>
+
+                <div class="navbar navbar-expand-lg navbar-dark align-items-center" id="narbar-container">
+                    <button class="navbar-toggler" id="navbar-hamburger-collapse" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ page.t.header.show_menu }}">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+    
+                    <div class="collapse navbar-collapse justify-content-end">
+                        {% include navigation.html dropdowns=true %}
+                    </div>
+                    <span class="d-flex justify-content-end">
+                        {% include frontpage-search.html %}
+                    </span>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</header>
+
+<div class="header-navigation-dropdown">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        {% include navigation.html dropdowns=true %}
+        {% include navigation-top.html dropdowns=true %}
+    </div>
+</div>
+
+
+<!--
+{% include components/page-top.html %}
+ -->
