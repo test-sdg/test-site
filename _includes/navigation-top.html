@@ -1,0 +1,18 @@
+{%- if site.menu_top -%}
+
+{%- if include.dropdowns -%}
+<ul class="navbar-nav" id="menu">
+
+{%- for item in site.menu_top -%}    
+    {% include navigation-link.html item=item %}
+{%- endfor -%}
+</ul>
+
+
+{%- else -%}
+{%- for item in site.menu_top -%}   
+    {% include navigation-link-top.html item=item %}
+{%- endfor -%}
+{%- endif -%}
+
+{%- endif -%}

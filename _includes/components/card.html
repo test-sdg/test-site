@@ -1,0 +1,35 @@
+<!-- cards for publication etc-->
+<h2 style="font-size: 32px; font-weight: 700; color: #444444; padding-top: 5rem;">Veröffentlichungen</h2>
+<h4 style="font-size: 22px; color: #444444; margin-bottom: 20px;">Bleibe auf dem Laufenden...</h4>
+<br>
+
+
+<div id="carouselCard" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2500">
+    
+    <div class="carousel-inner" style="margin-right: -10px;">
+        {% for card in site.frontpage_cards %}
+        <div class="carousel-item {% if forloop.first %}active{% endif %} card-gap" style="overflow:visible">
+            <div class="col">
+                <div class="card border">
+                    <a href="{{ card.href }}" target="_blank" style="text-decoration: none;">
+                        <img class="card-img-top" src='{{ site.baseurl }}/assets/img{{ card.thumbnail_src }}' alt="include.card.title">
+                        <div class="cont">
+                            <h4 style="font-weight: 600; font-size: calc(1rem + 1vw*0.075); line-height: 1.5;">{{ card.title }}</h4>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <a class="carousel-card-prev float-start" role="button" data-bs-target="#carouselCard" data-bs-slide="prev" style="color:white">
+        <span class="fa fa-chevron-left" id="nav-arrow" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </a>
+    <a class="carousel-card-next float-end" role="button" data-bs-target="#carouselCard" data-bs-slide="next" style="color:white">
+        <span class="fa fa-chevron-right" id="nav-arrow" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </a>
+
+</div>

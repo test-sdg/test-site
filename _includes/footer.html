@@ -1,0 +1,81 @@
+
+<footer class="wide-background " style="width: 100%; margin-top: 6rem; padding-top: 5rem; padding-bottom: 0px;">
+    <div class="container">
+        <div class="row g-0" style="padding: 0px;">
+            <div class="col-xs-12">
+                <div id="kooperation" >
+                    <p>Unsere Projektpartner</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row g-0 flexdirection justify-content-around">
+            <div class="col-xs-3" id="footer-binder">
+                <div id="bilder" style="background-color:white; padding-top: 1.4rem;">
+                    <a href="https://www.htw-berlin.de" id="footer-binder-href" target="_blank"><img src="{{ site.baseurl }}/assets/img/logo_htw.png" alt="htw_berlin" id="footer-binder-image" class="img-responsive"></a>
+                </div>
+            </div>
+            <div class="col-xs-3" id="footer-binder">
+                <div id="bilder" style="background-color:white;">
+                    <h5 style="margin-top: 3%; margin-bottom: 2%;">In Koorperation mit</h5>
+                    <a href="https://www.engagement-global.de/" id="footer-binder-href" target="_blank" ><img src="{{ site.baseurl }}/assets/img/logo_eg.png" alt="engagement_global1" id="footer-binder-image" class="img-responsive"></a>
+                </div>
+            </div>
+            <div class="col-xs-3" id="footer-binder">
+                <div id="bilder" style="background-color:white;">
+                    <h5 style="margin-top: 3%; margin-bottom: 2%;">mit ihrer</h5>
+                    <a href="https://skew.engagement-global.de/" id="footer-binder-href" target="_blank" ><img src="{{ site.baseurl }}/assets/img/logo_skew_de.png" alt="engagement_global2" id="footer-binder-image" class="img-responsive"></a>
+                </div>
+            </div>
+            <div class="col-xs-3" id="footer-binder">
+                <div id="bilder" style="background-color:white;">
+                    <h5 style="margin-top: 2.5%; margin-bottom: 0%">mit Mitteln des</h5>
+                    <a href="https://www.bmz.de/de" id="footer-binder-href" target="_blank" ><img src="{{ site.baseurl }}/assets/img/logo_BMZ.png" alt="bmz" id="footer-binder-image" class="img-responsive"></a>
+                </div>
+            </div>
+         </div>
+    </div>
+    <div class="container">
+        <div class="row g-0" style="padding: 0px;text-align: center;">
+            <div class="col-xs-12">
+                <div id="footerLinks" style="background-color:#003E59;color:white;padding: 10px;margin-bottom: 1px;">
+                    <ul style="text-align: center;">
+                        {% if site.footer_menu %}
+                            {% for item in site.footer_menu %}
+                                {%- assign item_path = item.path | t -%}
+                                <li style="color:white;margin: 15px;font-weight: bold;">
+                                    {% if item_path contains "http" %}
+                                        <a href="{{ item_path }}" target="_blank" style="text-decoration: none;color:white;margin: 10px; padding:0.5rem 0rem; font-size: 1.1rem; font-weight: 600;">{{ item.translation_key | t }}</a>
+                                        {% elsif item_path contains ":" %}
+                                        <a href="{{ item_path }}" target="_blank" style="text-decoration: none;color:white;margin: 10px; padding:0.5rem 0rem;font-size: 1.1rem; font-weight: 600;">{{ item.translation_key | t }}</a>
+                                    {% else %}
+                                        {%- assign item_path_first = item_path | slice: 0 %}
+                                        {%- if item_path_first == '/' -%}
+                                            {%- assign item_path = item_path | slice: 1, item_path.size -%}
+                                        {%- endif -%}
+                                        <a href="{{ page.baseurl }}{{ item_path }}" style="text-decoration: none;color:white;margin: 10px; padding:0.5rem 0rem;font-size: 1.1rem; font-weight: 600;">{{ item.translation_key | t }}</a>
+                                    {% endif %}
+                                    </li>
+                            {% endfor %}
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row g-0" style="padding: 0px;text-align:center">
+            <div class="col-xs-12">
+                <div id="footerende" style="background-color:#003E59;color:white;padding: 10px;margin-bottom:1px; text-align: center;">
+                    <ul style="text-align: center;">
+                        <li style="color:white;margin: 15px;font-weight: bold; list-style-type: none;">
+                            <a href="https://open-sdg.org/" id="footerende-href" target="_blank" style="text-decoration: none; color:white; margin:10px; font-size:15px;">Diese Webseite wurde mit Open SDG erstellt</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+{% include scripts.html %}

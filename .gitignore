@@ -11,3 +11,5 @@ Gemfile.lock
 deploy_key*
 deploy_key*.pub
 *.keybase
+.bundle
+vendor/
