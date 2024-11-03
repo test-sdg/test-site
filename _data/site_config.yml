@@ -222,7 +222,7 @@ progressive_web_app:
 proxy_indicators:
   label: ''
   description: ''
-remote_data_prefix: 'https://test-sdg.github.io/test-data/'
+remote_data_prefix: 'https://open-sdg.org/open-sdg-data-starter'
 reporting_status:
   title: status.reporting_status
   description: status.description
@@ -239,7 +239,7 @@ reporting_status:
       label: status.not_applicable
       hide_on_goal_pages: false
 repository_url_data: 'https://github.com/open-sdg/open-sdg-data-starter'
-repository_url_site: 'https://github.com/test-sdg/test-data'
+repository_url_site: 'https://github.com/test-sdg/test-site'
 search_index_boost: []
 search_index_extra_fields: []
 site_config_form:
